@@ -1,0 +1,54 @@
+@charset "UTF-8";
+body {
+  -webkit-font-smoothing: antialiased;
+  background-color: white;
+  color: #333;
+  font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+  font-size: 1em;
+  line-height: 1.5;
+  margin: 0px;
+  background-color: #1a1a1a;
+  z-index: -500;
+  font-family: "pressStart"; }
+a { text-decoration: none; }
+a:active, a:focus { outline: none; }
+
+@font-face {
+    font-family: "pressStart";
+    src: url("fonts/PressStart2P-Regular.ttf"); }
+div#breakout-box {
+  height: 200px;
+  position: relative; }
+
+@media screen and (max-width: 760px) {
+    div#breakout-box {
+      height: 80px; } }
+
+div.info-box {
+    color: white;
+    font-family: "pressStart";
+    width: 100%;
+    text-align: center;
+    font-size: 10px;
+    display: none;
+}
+
+div#breakout-box div#breakout {
+    width: 100%;
+    height: 100%;
+    background-color: black; }
+
+div#breakout-box div#msg-flash {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    margin: 0px auto;
+    z-index: 10000;
+    text-align: center;
+    opacity: .6;
+    padding: 10px;
+    font-family: "pressStart";
+    margin-top: 2em;
+    color: white;
+    font-size: 24px;}

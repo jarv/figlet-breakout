@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>figlet-breakout</title>
+    <meta name="description" content="play breakout in the browser">
+    <link rel="stylesheet" href="css/animate.min.css">
+    <link rel="stylesheet" href="css/figlet-breakout-src.css">
+  </head>
+  <body>
+    <!--[if lt IE 7]>
+        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <div class="info-box">
+      <div>sound <span id="sound-toggle">OFF</span> (press s to toggle)</div>
+      <div><span id="points">0</span> points</div>
+    </div>
+    <div id="breakout-box">
+        <div id="msg-flash"></div>
+        <div id="breakout"></div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js"></script>
+    <script src="bower_components/howler.js/dist/howler.min.js"></script>
+    <script src="bower_components/rectangle/rectangles.min.js"></script>
+    <script src="bower_components/routie/dist/routie.min.js"></script>
+    <script src="js/figlet-src.js"></script>
+    <script src="js/figlet-breakout-src.js"></script>
+    <script>
+    var medium_window = 760;
+    var settings = {};
+    var large_block_font = 8,
+        large_paddle_font = 14,
+        small_block_font = 3,
+        small_paddle_font = 8;
+    var large_collapsed_height = 200, small_collapsed_height = 80;
+    var large_expanded_height = 500, small_expanded_height = 200;
+    var expand_breakout, reset_breakout;
+    var fade_in_out, fade_in_delete, fade_in_add;
+
+    settings.onToggleSound = function(snd) {
+      if (snd) {
+        $("#sound-toggle").html("ON");
+      } else {
+        $("#sound-toggle").html("OFF");
+      }
+    };
+
+    settings.onGameStart = function() {
+      fade_in_out("Welcome to Figlet Breakout!");
+    };
+
+    settings.onGameOver= function(has_won) {
+      if (has_won) {
+        fade_in_out("You won Figlet Breakout!");
+      } else {
+        fade_in_out("Sorry, try again!");
+      }
+      reset_breakout();
+    };
+
+    settings.onGameFlash = function(msg) {
+      fade_in_out(msg);
+    };
+
+    fade_in_add = function(el, to_add, callback) {
+      el.append(to_add);
+      $(to_add).addClass("fadeInDown");  
+      if (typeof callback === 'function') { callback(); }
+    };
+
+    fade_out_delete = function(el, callback) {
+      $(el).addClass("fadeOut");  
+      setTimeout(function() {
+        el.parentNode.removeChild(el);
+        $(el).removeClass("fadeOut");
+        if (typeof callback === 'function') { callback(); }
+      }, 500);
+    };
+
+    fade_in_out = function(msg) {
+      var el, to_add;
+      el = $("#msg-flash");
+      to_add = document.createElement('div');
+      to_add.className = "flash animated ";
+      to_add.innerHTML = msg;
+      fade_in_add(el, to_add, function() {
+        setTimeout(function() {
+          fade_out_delete(to_add);
+        }, 2000);
+      });
+    };
+
+    settings.figlet_font = "3-d";
+    settings.font_name = "pressStart";
+    settings.game_str = "Click to play\nFiglet Breakout!";
+    settings.font_size = ($(window).width() < medium_window) ? small_block_font : large_block_font;
+    settings.p_font_size = ($(window).width() < medium_window) ? small_paddle_font : large_paddle_font; 
+    settings.onGamePoints = function(pts) { $("#points").html(pts); };
+
+    expand_breakout = function() {
+      var height = ($(window).width() < medium_window) ? small_expanded_height: large_expanded_height;
+      $("#breakout-box").animate({
+        height: height
+      }, 100, function() {
+        $(".info-box").show();
+        FigletBreakout.reset();
+        FigletBreakout.play();
+      });
+    };
+
+    reset_breakout = function() {
+      if (! FigletBreakout.game) { return; }
+      var height = ($(window).width() < medium_window) ? small_collapsed_height : large_collapsed_height;
+      $(".info-box").hide();
+      $("#breakout-box").height(height);
+      settings.font_size = ($(window).width() < 760) ? 3 : 8;
+      settings.p_font_size = ($(window).width() < 760) ? 12 : 14;
+      FigletBreakout.reset(settings);
+      $("#breakout-box").off("click", expand_breakout);
+      $("#breakout-box").one("click", expand_breakout);
+    };
+
+    // Reset the canvas on window resize
+    $(window).on("resize", function() {
+      reset_breakout();
+    });
+
+    FigletBreakout.init(settings);
+    $("#breakout-box").one("click", expand_breakout);
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+  </body>
+</html>
