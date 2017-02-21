@@ -1,23 +1,24 @@
 # Figlet Breakout
 
-See the demo!
+## [Play the demo!](https://jarv.org/figlet-breakout)
 
 ## What is Figlet?
 
-Figlet is a tool for generating banners with ASCII characters. There is quite
-a large collection of fonts, for more information see any of the following pages:
+Figlet is a tool for generating banners with ASCII characters. There are a large
+number of contributed fonts, all of which can be used to turn a banner into a
+game of break-out. For more information about figlet, see any of the following pages:
 * http://patorjk.com/software/taag/#p=display&f=Graffiti&t=Type%20Something%20
 * http://www.figlet.org/
 
 ## What is Figlet Breakout?
 
-Creates a Breakout game from a Figlet ascii banner.
+Creates a Breakout game from a Figlet ascii banner. [(Demo)](https://jarv.org/figlet-breakout)
 
 ## Why?
 
 Why not?
 
-Actually this is an old project that I had from awhile back that I dusted off to use as the winning screen for the site [cmdchallenge](https://cmdchallenge.com).
+This is an old project that I had from awhile back that I dusted off to use as the winning screen for the site [cmdchallenge](https://cmdchallenge.com).
 
 ## Installation
 
@@ -27,18 +28,13 @@ bower install figlet-breakout
 
 ### HTML for the game
 
+See the example [index.html](https://github.com/jarv/figlet-breakout/blob/master/index.html).
 
 ```
-    <script src="bower_components/lodash/dist/lodash.min.js"></script>
-    <script src="bower_components/howler.js/dist/howler.min.js"></script>
-    <script src="bower_components/rectangle/rectangles.min.js"></script>
-    <script src="bower_components/figlet-breakout/js/figlet-1.0.0.min.js"></script>
-    <script src="bower_components/figlet-breakout/js/figlet-breakout-1.0.0.min.js"></script>
-
-    <div id="breakout-box">
-        <div id="msg-flash"></div>
-        <div id="breakout"></div>
-    </div>
+<div id="breakout-box">
+    <div id="msg-flash"></div>
+    <div id="breakout"></div>
+</div>
 ```
 
 ### Initializing the Board
@@ -57,22 +53,13 @@ Once the board is initialized it can be either call play() or reset()
 
 Reset will return everything to the default settings:
 ```
-    FigletBreakout.reset();
+FigletBreakout.reset();
 ```
+
 Play will start the game:
+
 ```
-        FigletBreakout.play();
+FigletBreakout.play();
 ```
-
-There are many other settings, automatic word wrapping and line breaks
-are also supported.
-
-See the [example index.html](https://github.com/figlet-breakout/index.html).
-
-#### Play
-
-
-
-
-
-
+There are many other settings that can be overridden, auto word wrapping and line breaks
+are also supported. See the [default settings](https://github.com/jarv/figlet-breakout/blob/master/js/figlet-breakout-src.js#L765)
