@@ -28,7 +28,7 @@ bower install figlet-breakout
 
 ### HTML for the game
 
-See the example [index.html](https://github.com/jarv/figlet-breakout/blob/master/index.html).
+See the example [index.html](https://gitlab.com/jarv/figlet-breakout/blob/master/index.html).
 
 ```
 <div id="breakout-box">
@@ -62,4 +62,4 @@ Play will start the game:
 FigletBreakout.play();
 ```
 There are many other settings that can be overridden, auto word wrapping and line breaks
-are also supported. See the [default settings](https://github.com/jarv/figlet-breakout/blob/master/js/figlet-breakout-src.js#L765)
+are also supported. See the [default settings](https://gitlab.com/jarv/figlet-breakout/blob/master/js/figlet-breakout-src.js#L765)
