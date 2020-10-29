@@ -12,7 +12,7 @@ game of break-out. For more information about figlet, see any of the following p
 
 ## What is Figlet Breakout?
 
-Creates a Breakout game from a Figlet ascii banner. [(Demo)](https://jarv.org/figlet-breakout)
+Creates a Breakout game from a Figlet ascii banner. [(Demo)](https://jarv.gitlab.io/figlet-breakout)
 
 ## Why?
 
