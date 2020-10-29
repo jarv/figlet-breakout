@@ -1,6 +1,6 @@
 # Figlet Breakout
 
-## [Play the demo!](https://jarv.org/figlet-breakout)
+## [Play the demo!](https://jarv.gitlab.io/figlet-breakout)
 
 ## What is Figlet?
 
